@@ -1,5 +1,5 @@
 import 'typeface-bitter'
-import 'typeface-open-sans'
+import 'typeface-lato'
 
 import { wrapRootElement as wrap } from './wrap-root-element'
 
