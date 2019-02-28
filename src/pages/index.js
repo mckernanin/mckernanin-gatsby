@@ -8,7 +8,7 @@ import { Layout, Article, Wrapper, Button, SectionTitle } from '../components'
 const Content = styled.div`
   grid-column: 2;
   box-shadow: 0 4px 120px rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   padding: 3rem 6rem;
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     padding: 3rem 2rem;
@@ -29,7 +29,7 @@ const Hero = styled.div`
     padding: 2rem 1rem 4rem 1rem;
   }
 
-  p {
+  /* p {
     font-size: 1.68rem;
     margin-top: -1rem;
     @media (max-width: ${props => props.theme.breakpoints.tablet}) {
@@ -38,7 +38,12 @@ const Hero = styled.div`
     @media (max-width: ${props => props.theme.breakpoints.phone}) {
       font-size: 1.25rem;
     }
-  }
+  } */
+`
+
+const SmallParagraph = styled.p`
+  font-size: 1.1em;
+  line-height: 1.5;
 `
 
 const IndexPage = ({
@@ -49,11 +54,18 @@ const IndexPage = ({
   <Layout>
     <Wrapper>
       <Hero>
-        <h1>Hi.</h1>
-        <p>
-          I&apos;m John Doe, a Senior UX Developer with five years of industry experience, specializing in developing
-          React apps with the best UX users can get.
-        </p>
+        <h4>
+          Hi! My name is Kevin McKernan, <br />
+          and I‘m a Senior Front End Engineer from Denver, CO.
+        </h4>
+        <SmallParagraph>
+          I built my first website at the age of 12, and I have worked on turning that hobby into a career ever since.
+          As a technical leader and developer, I have built products and websites as solutions for both client and
+          personal projects. I enjoy working on projects which involve new technical challenges to solve, collaborating
+          with other developers, and helping the developers around me learn new skills. I’m currently leading all front
+          end projects at AirDNA, co-organizing the Denver React Meetup, and building awesome online tools for the Order
+          of the Arrow!
+        </SmallParagraph>
         <Link to="/contact">
           <Button big>
             <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">

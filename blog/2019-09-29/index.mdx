@@ -1,0 +1,36 @@
+---
+date: "2019-09-29"
+title: "Learning about Service Worker scopes the hard way"
+categories:
+  - Development
+---
+
+This week I was tasked with improving the deploy process for our React app. We're using code splitting with react-loadable, and if someone was using the app and we deployed, whenever they went to load another chunk they would get a 404 and the app would crash. Previously, we've been serving 1 version back to mitigate most of these errors, but it wasn't foolproof and didn't feel like the best way to fix the issue.
+
+## Enter offline-plugin
+
+I setup offline-plugin, so that we could cache the chunks for the version the user loaded, that way they would not encounter these 404 errors. Deployed to a test server, checked the application cache, and everything looked great. Then I deleted the chunks from the server, expecting the issue to be resolved. 404. huh? why?
+
+## Service Worker scopes
+
+Our application is served at domain.com/application-name, but the source files are served from domain.com/app/application-name. The path to our service worker was domain.com/app/application-name/sw.js. The way scopes work in a SW, you can't cache/proxy requests from a URL that is under a different directory than your SW is served from for security reasons. To fix this, I modified the config for offline-plugin as follows:
+
+```js
+new OfflinePlugin({
+  ServiceWorker: {
+    publicPath: '/application-name/sw.js',
+  },
+}),
+```
+
+Then I setup a rewrite rule in Apache, to rewrite requests from `domain.com/application-name/sw.js` to `domain.com/app/application-name/sw.js` like this:
+
+```
+RewriteRule ^application-name/sw.js /app/application-name/sw.js [L]
+```
+
+Voila! Now our service worker is caching like we want it to! Hopefully this saves you time if you run into this issue yourself!
+
+### Resources:
+
+https://stackoverflow.com/questions/35780397/understanding-service-worker-scope

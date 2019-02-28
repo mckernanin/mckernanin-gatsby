@@ -1,0 +1,24 @@
+---
+date: "2016-08-20"
+title: "Common pitfalls with xdebug"
+categories:
+  - Development
+---
+
+xdebug is an awesome tool for debugging your PHP code. Rather than var_dump'ing your variables out in a page, you can peek into them in your editor at particular points in the execution. Interacting with it is supported by a wide range of editors, including Atom, Sublime Text, and PHPStorm. It's a little finicky, and there are some common pitfalls. There are lots of tutorials out there for basic setup with a variety of local dev methods -- so I won't really touch on that. I'm using Pressmatic and Atom.
+
+### remote_autostart || remote_host
+
+> xdebug.remote_autostart = 0 xdebug.remote_host = 192.168.50.100
+
+For local development, you can just set remote_autostart to 1 (aka true) and forget about remote host -- they're not both required. remote_autostart enables xdebug for any client, where remote_host just enables it for the IP specified. remote_host would be useful if you're debugging on a remote server, and don't want just anyone to see data on the backend of your site (bad security, mmkay?)
+
+### Everything is configured, but nothing is showing up in my xdebug client
+
+I've yelled at my laptop until I was blue in the face trying to get xdebug working, and multiple times it's been the same issue. By default, xdebug isn't enabled on every request, you have to trigger it. The easiest way to do this is with a browser extension:
+
+- Chrome - https://chrome.google.com/webstore/detail/xdebug-helper/
+- Safari - https://github.com/mac-cain13/xdebug-helper-for-safari
+- Firefox - https://addons.mozilla.org/en-US/firefox/addon/the-easiest-xdebug/
+
+The extensions all add an arg to your request to enable xdebug on that request. Click the icon, then click debug, and reload the page. Now you should see data showing up in your client.

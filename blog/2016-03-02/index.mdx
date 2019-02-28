@@ -1,0 +1,14 @@
+---
+date: "2016-03-02"
+title: "Using Remote WordPress Uploads on nginx & vvv"
+categories:
+  - Development
+---
+
+I was [reading this article by Pole Vault Web](http://www.polevaultweb.com/2014/03/5-ways-synchronise-wordpress-uploads-across-environments/) about using the media on a live site, which contains a few helpful tips for your local development sites. To recap, the idea is to save space on your local development sites, and not download all of the media files just to make your local environment work. There's just one problem: like many WordPress developers, I'm using vvv for my local development environment. VVV uses nginx as opposed to apache, so a .htaccess file isn't going to help you. You can do the same with nginx, you just have to add some code to your configuration file. Here's what you need to add to your config file: https://gist.github.com/mckernanin/f75f8bcd74af84730723 If you're not sure where to use this, here's how!
+
+1.  In your vvv directory, go to /config/nginx-config/sites/ and open yoursite.conf with your editor of choice.
+2.  After the line containing "include /etc/nginx/nginx-wp-common.conf;", paste in the above code, replacing _yourlivesite.com _with the URL of your live site.
+3.  Save the config file.
+4.  Run the command *vagrant provision* to reboot your instance of vvv, which will load the edited config file.
+5.  Open your local development site, and you should now see media which was previously missing.

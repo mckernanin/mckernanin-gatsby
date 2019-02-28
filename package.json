@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-minimal-blog",
-  "description": "Typography driven blog, focus on the content & minimal style. Powered by MDX. Live Preview with react-live.",
-  "version": "3.0.0",
-  "author": "LekoArts <hello@lekoarts.de> (https://www.lekoarts.de)",
+  "name": "mckernanin-gatsby",
+  "description": "Personal website for Kevin McKernan",
+  "version": "1.0.0",
+  "author": "Kevin McKernan <kevin@mckernan.in> (https://mckernan.in)",
   "dependencies": {
     "@mdx-js/mdx": "^0.17.5",
     "@mdx-js/tag": "^0.17.5",
@@ -36,16 +36,11 @@
     "typeface-bitter": "^0.0.71",
     "typeface-open-sans": "^0.0.54"
   },
-  "keywords": [
-    "gatsby",
-    "gatsby-starter",
-    "lekoarts"
-  ],
   "license": "MIT",
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop -o",
+    "start": "gatsby develop -o",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",

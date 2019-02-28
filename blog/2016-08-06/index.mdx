@@ -1,0 +1,31 @@
+---
+date: "2016-08-06"
+title: "Building Custom WordPress REST API Endpoints"
+categories:
+  - Development
+---
+
+In many of the projects I have been working on lately, we have leveraged the WordPress REST API. It's super easy to add your own endpoints, and it just feels better than the old admin-ajax way.
+
+### Wait, WordPress has a REST API?
+
+Kind of. As of WordPress 4.4, there's an api *framework* built in to core. The [API project started as a plugin](http://v2.wp-api.org), and there are endpoints for posts, pages, etc in the plugin. However, there are not currently any core endpoints, as they're still a work in progress, and subject to change.
+
+### So WordPress hasn't had any way to do AJAX requests before?
+
+Not quite. Anyone who has done some AJAX work in WP before is familiar with the following code: https://gist.github.com/mckernanin/95b593070796107e408a3aa895df4aa5 If you haven't, don't worry. You never need to see this again. Basically, you have to add an action for both logged in and not logged in users, and then hook a callback function to it, which will run when you send a request to admin-ajax.php, with the action specified. This could be JSON, or something else. This functionality always felt like a hack, because it was.
+
+### Ok, so how do I use the REST API?
+
+You can install the API plugin, which will give you default endpoints, or you can roll your own. I'm a fan of custom endpoints, as you know they won't get broken in a future update, and you have control over the data you return.  Here's an example of adding an endpoint: https://gist.github.com/mckernanin/fbcf4545b148a14283ba3d142780d31f The above code adds an endpoint that spits out JSON containing an array of posts on my website. I have it available as a [plugin on github](https://github.com/mckernanin/simple-post-endpoint). You can see the results here: [https://mckernan.in/wp-json/simple-posts/v1/list-posts](https://mckernan.in/wp-json/simple-posts/v1/list-posts). You can specify whether you want to use POST or GET, depending on your needs. I used GET in this example so you can view it in your browser.
+
+### Wow, that's cool! Thanks!
+
+Aw shucks :) Here's a list of things I've done with the API recently:
+
+- Grab a list of recent blog posts from my company's site, to display on a static landing page.
+- Custom "load more posts" feature on 2 different blogs, including [pierryinc.com/blog](http://pierryinc.com/blog)
+- Tooltip content on an SVG-based map on a client site
+- Populating fullcalendar.js with data from a  WordPress post type.
+
+All of these were really easy to accomplish, using the REST API!

@@ -1,0 +1,8 @@
+---
+date: "2016-08-16"
+title: "Quick Tip: Divi Footer Text Replacement"
+categories:
+  - Development
+---
+
+I'm a big fan of Divi by Elegant Themes, and they've got some crazy stuff coming in September: A front end WP editor powered by React. The video demos I have seen so far are incredible, and I'm looking forward to using it. [Check out their website for a demo.](https://www.elegantthemes.com/blog/divi-resources/divi-3-0-sneak-peek-the-very-first-video-screencast-of-the-new-builder-in-action) One of the first things I always do on a Divi site is copy the footer.php to my child theme so I can edit the copyright message. I finally decided to figure out a better way to do this, and as it turns out it's pretty simple. Add the following filter to your child theme: https://gist.github.com/mckernanin/e523a1e779c9bfacb5a5ae9e72793408 On line 5, we're getting a dynamic date, and the site title. On this site, you would get *© 2016 Kevin McKernan. All rights reserved.* Note that this is specific to Divi, if you're using another theme you can accomplish something similar but you'll have to find the right string of text to replace.
