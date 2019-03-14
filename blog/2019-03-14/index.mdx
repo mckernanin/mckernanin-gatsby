@@ -1,0 +1,16 @@
+---
+date: "2019-03-14"
+title: "ssh-agent on Windows Subsystem for Linux"
+categories:
+  - Development
+---
+
+It took a lot of googling to finally find a solution for setting up ssh-agent properly on WSL, so I'm not entering my ssh passphrase every time I do anything requiring it.
+Add this to your profile (`.bashrc` or `.zshrc`):
+
+```
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+```
+
+Now, when you start a new terminal you'll be asked for your passphrase, and it'll get used automatically in that session!
