@@ -29,6 +29,13 @@ module.exports = {
       options: {
         gatsbyRemarkPlugins: [
           {
+            resolve: 'gatsby-remark-embed-gist',
+            options: {
+              username: 'mckernanin',
+              // includeDefaultCss: true,
+            },
+          },
+          {
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',

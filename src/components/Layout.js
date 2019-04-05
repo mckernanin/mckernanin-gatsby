@@ -7,6 +7,7 @@ import SEO from './SEO'
 import theme from '../../config/theme'
 
 const GlobalStyle = createGlobalStyle`
+  @import "https://github.githubassets.com/assets/gist-embed-a9a1cf2ca01efd362bfa52312712ae94.css";
   *,
   *:before,
   *:after {
