@@ -56,7 +56,7 @@ const IndexPage = ({
       <Hero>
         <h4>
           Hi! My name is Kevin McKernan, <br />
-          and I‘m a Senior Front End Engineer from Denver, CO.
+          and I‘m a software engineer from Denver, CO.
         </h4>
         <SmallParagraph>
           I built my first website at the age of 12, and I have worked on turning that hobby into a career ever since.
