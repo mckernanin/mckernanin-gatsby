@@ -40,6 +40,13 @@ const Content = styled.article`
     margin-bottom: 1rem;
     font-size: 16px;
   }
+
+  ol {
+    li {
+      line-height: 1.2;
+      margin-bottom: 0.5em;
+    }
+  }
 `
 
 const Title = styled.h1`

@@ -1,0 +1,83 @@
+---
+date: "2019-12-30"
+title: "Kubernetes 🤝 Github Package Registry"
+categories:
+  - Development
+  - Kubernetes
+---
+
+Here's a quick tutorial on getting your k8s cluster connected to Github's image registry.
+
+## Tagging & Pushing a Container
+_Prerequesites: docker installed on your computer, github account, github access token_
+
+1. Grab a docker container, we'll use "hello-world as an example": `docker pull hello-world`
+1. Authenticate docker w/ github locally: `docker login docker.pkg.github.com --username yourusername`
+1. Tag the image: `docker tag hello-world docker.pkg.github.com/yourusername/yourrepo/hello-world:1.0`
+1. Push it: `docker push docker.pkg.github.com/yourusername/yourrepo/hello-world:1.0`
+
+## Setting up credentials on your k8s cluster
+_Prerequesites: kubectl setup and connected to your cluster_
+
+1. Create a namespace: `kubectl create namespace github-test` (or use an existing one)
+1. Run the following command to add a secret to the namespace w/ github credentials: `kubectl create secret docker-registry github-package-auth --docker-server=docker.pkg.github.com --docker-username=yourusername --docker-password=yourgithubtoken --docker-email=yourgithubemail`
+1. Create a new deployment by saving the following block of yaml to a file, then running `kubectl apply -f ./path/to/file.yml`
+```yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-test
+  namespace: github-test
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      name: nginx-test
+      labels:
+        app: nginx-test
+    spec:
+      imagePullSecrets:
+        - name: github-package-auth
+      containers:
+        - name: nginx-test
+          image: docker.pkg.github.com/yourusername/yourrepo/hello-world:1.0
+          resources:
+            requests:
+              memory: 30M
+              cpu: 5m
+            limits:
+              memory: 100M
+              cpu: 50m
+
+```
+4. Run `kubectl logs -f %pod%` and you should see the log from the container. _Hint: type `kubectl logs -f nginx-test` and then press tab to autocomplete the pod identifier_
+```
+Hello from Docker!
+This message shows that your installation appears t
+o be working correctly.
+
+To generate this message, Docker took the following
+ steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" imag
+e from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from
+that image which runs the
+    executable that produces the output you are cur
+rently reading.
+ 4. The Docker daemon streamed that output to the D
+ocker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubu
+ntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+ ```
