@@ -79,5 +79,18 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify',
+    {
+      resolve: 'gatsby-plugin-fathom',
+      options: {
+        // Fathom server URL. Defaults to `cdn.usefathom.com`
+        trackingUrl: 'fathom.mckernanin.dev',
+        // Unique site id
+        siteId: 'FXPCI',
+        // Domain whitelist
+        whitelistHostnames: [
+          'mckernan.in'
+        ]
+      }
+    }
   ],
 }
