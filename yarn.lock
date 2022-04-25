@@ -11816,10 +11816,10 @@ typeface-bitter@^0.0.71:
   resolved "https://registry.yarnpkg.com/typeface-bitter/-/typeface-bitter-0.0.71.tgz#bfd97a1b3a52c1275319ca169f92e3419c7abf8e"
   integrity sha512-F8fJUCWtVTkgw2UfxaYOQt3lPsrmGKYiUC3ZOBcS88QuRpN0qd29s07o2q07vow2E+KP8LLuezbrZ/rTMw/XlQ==
 
-typeface-lato@^0.0.54:
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/typeface-lato/-/typeface-lato-0.0.54.tgz#6ea56309a8b0cfdb7e8246e05de4b58b8272b47c"
-  integrity sha512-2/oP5YrXCBSLg+N2ZdWnMbJ0PRIidrJVFHgRoLxo5MNsdu9eE4aBwsoEY/K/+9rKdktGO8zpiXBYPRn9F6U/Sw==
+typeface-lato@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/typeface-lato/-/typeface-lato-0.0.75.tgz#8aa11c5611dc38416837c089b265a2abd1f7dd31"
+  integrity sha512-iA5uJD4PSTyIE4BDiSOexQeXkDkiJuX4Hu3wh3saJ06EB2TvJayab1Lbbmqq2je/LQv7KCQZHZmC0k4hedd8sw==
 
 ua-parser-js@^0.7.18:
   version "0.7.19"
