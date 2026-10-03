@@ -28,7 +28,7 @@
     "lodash": "^4.17.11",
     "mdx-utils": "^0.2.0",
     "polished": "^3.0.0",
-    "prism-react-renderer": "^0.2.0",
+    "prism-react-renderer": "^2.4.1",
     "prop-types": "^15.8.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
